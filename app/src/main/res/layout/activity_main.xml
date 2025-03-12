@@ -1,84 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--suppress ALL -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:padding="24dp">
 
-    <!-- First Number Input -->
     <EditText
         android:id="@+id/inputFirstNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter first number"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/hint_first_number"
         android:inputType="numberDecimal"
-        android:padding="10dp"/>
+        android:minHeight="48dp"
+        android:importantForAutofill="yes"
+        android:autofillHints="username" />
 
-    <!-- Second Number Input -->
     <EditText
         android:id="@+id/inputSecondNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter second number"
+        android:layout_marginBottom="24dp"
+        android:hint="@string/hint_second_number"
         android:inputType="numberDecimal"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"/>
+        android:minHeight="48dp"
+        android:importantForAutofill="yes"
+        android:autofillHints="username" />
 
-    <!-- Buttons Layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
-        android:layout_marginTop="10dp">
+        android:orientation="horizontal"
+        android:weightSum="4">
 
-        <!-- Addition Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonPlus"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="+" />
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:backgroundTint="@color/dark_orange"
+            android:textColor="@android:color/white"
+            android:text="@string/btn_plus" />
 
-        <!-- Subtraction Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonMinus"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="-" />
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:backgroundTint="@color/dark_orange"
+            android:textColor="@android:color/white"
+            android:text="@string/btn_minus" />
 
-        <!-- Multiplication Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonMultiply"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="×" />
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:backgroundTint="@color/dark_orange"
+            android:textColor="@android:color/white"
+            android:text="@string/btn_multiply" />
 
-        <!-- Division Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDivide"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="÷" />
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:backgroundTint="@color/dark_orange"
+            android:textColor="@android:color/white"
+            android:text="@string/btn_divide" />
     </LinearLayout>
 
-    <!-- Result Display -->
     <TextView
         android:id="@+id/textResult"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Result:"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"/>
+        android:text="@string/result_text"
+        android:textSize="24sp" />
+
 </LinearLayout>

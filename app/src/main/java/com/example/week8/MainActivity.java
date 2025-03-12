@@ -1,69 +1,78 @@
 package com.example.week8;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    EditText inputFirstNumber, inputSecondNumber;
-    Button buttonPlus, buttonMinus, buttonMultiply, buttonDivide;
-    TextView textResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Linking UI elements with Java code
-        inputFirstNumber = findViewById(R.id.inputFirstNumber);
-        inputSecondNumber = findViewById(R.id.inputSecondNumber);
-        buttonPlus = findViewById(R.id.buttonPlus);
-        buttonMinus = findViewById(R.id.buttonMinus);
-        buttonMultiply = findViewById(R.id.buttonMultiply);
-        buttonDivide = findViewById(R.id.buttonDivide);
-        textResult = findViewById(R.id.textResult);
+        EditText inputFirstNumber = findViewById(R.id.inputFirstNumber);
+        EditText inputSecondNumber = findViewById(R.id.inputSecondNumber);
+        TextView textResult = findViewById(R.id.textResult);
 
-        // Set click listeners for buttons
-        buttonPlus.setOnClickListener(view -> calculate('+'));
-        buttonMinus.setOnClickListener(view -> calculate('-'));
-        buttonMultiply.setOnClickListener(view -> calculate('*'));
-        buttonDivide.setOnClickListener(view -> calculate('/'));
+        Button buttonPlus = findViewById(R.id.buttonPlus);
+        Button buttonMinus = findViewById(R.id.buttonMinus);
+        Button buttonMultiply = findViewById(R.id.buttonMultiply);
+        Button buttonDivide = findViewById(R.id.buttonDivide);
+
+        buttonPlus.setOnClickListener(v -> calculate(inputFirstNumber, inputSecondNumber, textResult, '+'));
+        buttonMinus.setOnClickListener(v -> calculate(inputFirstNumber, inputSecondNumber, textResult, '-'));
+        buttonMultiply.setOnClickListener(v -> calculate(inputFirstNumber, inputSecondNumber, textResult, '*'));
+        buttonDivide.setOnClickListener(v -> calculate(inputFirstNumber, inputSecondNumber, textResult, '/'));
     }
 
-    private void calculate(char operator) {
-        // Get user input from text fields
-        String num1Str = inputFirstNumber.getText().toString();
-        String num2Str = inputSecondNumber.getText().toString();
+    private void calculate(EditText firstInput, EditText secondInput, TextView resultView, char operator) {
+        String first = firstInput.getText().toString().trim();
+        String second = secondInput.getText().toString().trim();
 
-        // Check if fields are empty
-        if (num1Str.isEmpty() || num2Str.isEmpty()) {
-            textResult.setText("Enter both numbers");
+        if (first.isEmpty() || second.isEmpty()) {
+            resultView.setText(R.string.msg_enter_both_numbers);
             return;
         }
 
-        // Convert input to double
-        double num1 = Double.parseDouble(num1Str);
-        double num2 = Double.parseDouble(num2Str);
-        double result = 0;
-
-        // Perform calculations
-        switch (operator) {
-            case '+': result = num1 + num2; break;
-            case '-': result = num1 - num2; break;
-            case '*': result = num1 * num2; break;
-            case '/':
-                if (num2 != 0) {
-                    result = num1 / num2;
-                } else {
-                    textResult.setText("Cannot divide by zero");
-                    return;
-                }
-                break;
+        double num1, num2;
+        try {
+            num1 = Double.parseDouble(first);
+            num2 = Double.parseDouble(second);
+        } catch (NumberFormatException e) {
+            resultView.setText(R.string.msg_invalid_input);
+            return;
         }
 
-        // Display result
-        textResult.setText("Result: " + result);
+        double result;
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                if (num2 == 0) {
+                    resultView.setText(R.string.msg_divide_by_zero);
+                    return;
+                }
+                result = num1 / num2;
+                break;
+            default:
+                resultView.setText(R.string.msg_unknown_operation);
+                return;
+        }
+
+        if (result == Math.floor(result)) {
+            resultView.setText(String.valueOf((int) result));
+        } else {
+            resultView.setText(String.valueOf(result));
+        }
     }
 }

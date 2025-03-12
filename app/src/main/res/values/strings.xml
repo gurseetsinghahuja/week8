@@ -1,9 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml -->
 <resources>
-    <string name="btn_plus_text">+</string>
+    <string name="hint_first_number">Enter first number</string>
+    <string name="hint_second_number">Enter second number</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_minus">-</string>
+    <string name="btn_multiply">*</string>
+    <string name="btn_divide">/</string>
     <string name="calculator">Week8</string>
-    <string name="btn_minus_text">-</string>
-    <string name="btn_multiply_text">*</string>
-    <string name="btn_divide_text">/</string>
     <string name="result_text">Result will appear here</string>
+
+    <string name="msg_enter_both_numbers">Please enter both numbers!</string>
+    <string name="msg_invalid_input">Invalid input!</string>
+    <string name="msg_divide_by_zero">Cannot divide by zero!</string>
+    <string name="msg_unknown_operation">Unknown operation!</string>
+
 </resources>
